@@ -1,0 +1,7 @@
+[lint]
+# Enable all `pydocstyle` rules, limiting to those that adhere to the
+
+# documentation for every function parameter.
+ignore = ["D417"]
+
+exclude = ["notebooks/**"]
