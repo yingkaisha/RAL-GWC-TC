@@ -1,0 +1,27 @@
+
+# =========================================================================================== #
+# PBS management
+qsub:
+    qsub_loc: '/glade/u/home/ksha/CONUS-TC/qsub/'
+    scripts_loc: '/glade/u/home/ksha/CONUS-TC/data_preprocessing/scripts/'
+    
+# =========================================================================================== #
+# Z-score and residual norm coef
+zscore:
+    U: '/glade/derecho/scratch/ksha/DWC_data/CONUS_domain_TC/ERA5/ERA5_8km_*.zarr'
+    V: '/glade/derecho/scratch/ksha/DWC_data/CONUS_domain_TC/ERA5/ERA5_8km_*.zarr'
+    T: '/glade/derecho/scratch/ksha/DWC_data/CONUS_domain_TC/ERA5/ERA5_8km_*.zarr'
+    Q: '/glade/derecho/scratch/ksha/DWC_data/CONUS_domain_TC/ERA5/ERA5_8km_*.zarr'
+    SP: '/glade/derecho/scratch/ksha/DWC_data/CONUS_domain_TC/ERA5/ERA5_8km_*.zarr'
+    MSL: '/glade/derecho/scratch/ksha/DWC_data/CONUS_domain_TC/ERA5/ERA5_8km_*.zarr'
+    VAR_2T: '/glade/derecho/scratch/ksha/DWC_data/CONUS_domain_TC/ERA5/ERA5_8km_*.zarr'
+    VAR_10U: '/glade/derecho/scratch/ksha/DWC_data/CONUS_domain_TC/ERA5/ERA5_8km_*.zarr'
+    VAR_10V: '/glade/derecho/scratch/ksha/DWC_data/CONUS_domain_TC/ERA5/ERA5_8km_*.zarr'
+    PWAT_05: '/glade/derecho/scratch/ksha/DWC_data/CONUS_domain_TC/ERA5/ERA5_8km_*.zarr'
+    precip_025: '/glade/derecho/scratch/ksha/DWC_data/CONUS_domain_TC/ERA5/ERA5_8km_*.zarr'
+    
+    save_loc: '/glade/campaign/ral/hap/ksha/DWC_data/CONUS_domain_TC/temp_ERA5_npy/'
+    years_range: [1980, 2019]
+    prefix: 'zscore_ERA5_1980_2019'
+
+
