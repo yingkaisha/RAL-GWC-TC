@@ -15,13 +15,24 @@ This study presents an AI-based dynamical downscaling system for Tropical cyclon
 A repository based on [MILES-CREDIT](https://miles-credit.readthedocs.io/en/latest/) (`credit` package, version 2025.3.0) for the RAL GWC TC downscaling.
 
 ### Installation
-* Run `create_derecho_env.sh` — creates the conda env (Python 3.11), installs the
+* For NSF NCAR users: Log in to Derecho, run `create_derecho_env.sh` — creates the conda env (Python 3.11), installs the
   Derecho MPI-enabled PyTorch wheels, then `pip install -e .`.
-* Alternative: MILES-CREDIT [documentation](https://miles-credit.readthedocs.io/en/latest/)
+* Other users: MILES-CREDIT [documentation](https://miles-credit.readthedocs.io/en/latest/)
 
 ## Navigation
 
+* Downscaling domain information [[Link]](https://github.com/yingkaisha/RAL-GWC-TC/blob/main/_PAPER/visualization/FIG_Domain.ipynb)
+* CRPS and energy spectrum verification [[Link]](https://github.com/yingkaisha/RAL-GWC-TC/blob/main/_PAPER/visualization/FIG_CRPS_MAE_ZES.ipynb)
+* Extreme events verification [[Link]](https://github.com/yingkaisha/RAL-GWC-TC/blob/main/_PAPER/visualization/FIG_Extreme.ipynb)
+* Example case Ian [[Link]](https://github.com/yingkaisha/RAL-GWC-TC/blob/main/_PAPER/visualization/FIG_example_TC_case.ipynb)
+
 ## Resources
+
+* NSF NCAR Research Data Archive, [ERA5 Reanalysis (0.25 Degree Latitude-Longitude Grid)](https://rda.ucar.edu/datasets/d633000/)
+
+* Google Research, Analysis-Ready, Cloud Optimized (ARCO) ERA5 [[link](https://cloud.google.com/storage/docs/public-datasets/era5)]
+
+* Four-kilometer long-term regional hydroclimate reanalysis over the conterminous United States (CONUS404) [[link](https://gdex.ucar.edu/datasets/d559000/)]
 
 ## Acknowledgement
 
