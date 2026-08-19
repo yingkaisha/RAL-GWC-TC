@@ -1,10 +1,10 @@
 # Kilometer-Scale AI Downscaling of Atlantic Hurricanes with Generative Ensembles
 
-Yingkai Sha, Talea L. Mayo, Ethan D. Gutmann, Lulin Xue, Andrew Newman
+Yingkai Sha<sup>a</sup>, Talea L. Mayo<sup>b</sup>, Ethan D. Gutmann<sup>a</sup>, Lulin Xue<sup>a</sup>, Andrew Newman<sup>a</sup>
 
-NSF National Center for Atmospheric Research, Boulder, Colorado, USA
+<sup>a</sup>NSF National Center for Atmospheric Research, Boulder, Colorado, USA
 
-Department of  Mathematics, Emory University, Atlanta, Georgia, USA
+<sup>b</sup>Department of  Mathematics, Emory University, Atlanta, Georgia, USA
 
 ## Abstract
 
@@ -21,6 +21,8 @@ A repository based on [MILES-CREDIT](https://miles-credit.readthedocs.io/en/late
 
 ## Navigation
 
+* Model weights [[huggingface]](https://huggingface.co/yingkaisha/CONUS404-AI-TC/tree/main)
+* Model architecture [[AI-based LAM]](https://github.com/yingkaisha/RAL-GWC-TC/blob/main/credit/models/swin_wrf_v2.py), [[EDM diffusion model]](https://github.com/yingkaisha/RAL-GWC-TC/blob/main/credit/models/corrdiff_unet.py)
 * Downscaling domain information [[Link]](https://github.com/yingkaisha/RAL-GWC-TC/blob/main/_PAPER/visualization/FIG_Domain.ipynb)
 * CRPS and energy spectrum verification [[Link]](https://github.com/yingkaisha/RAL-GWC-TC/blob/main/_PAPER/visualization/FIG_CRPS_MAE_ZES.ipynb)
 * Extreme events verification [[Link]](https://github.com/yingkaisha/RAL-GWC-TC/blob/main/_PAPER/visualization/FIG_Extreme.ipynb)
@@ -34,6 +36,10 @@ A repository based on [MILES-CREDIT](https://miles-credit.readthedocs.io/en/late
 
 * Four-kilometer long-term regional hydroclimate reanalysis over the conterminous United States (CONUS404) [[link](https://gdex.ucar.edu/datasets/d559000/)]
 
+* NCEP GDAS/FNL 0.25 Degree Global Tropospheric Analyses [[link](https://data.ucar.edu/dataset/ncep-gdas-fnl-0-25-degree-global-tropospheric-analyses-and-forecast-grids)]
+
+* HURDAT2 [[link](https://www.aoml.noaa.gov/hrd/hurdat/Data_Storm.html)]
+  
 ## Acknowledgement
 
 This material is based upon work supported by the National Science Foundation (NSF) National Center for Atmospheric Research (NCAR), which is a major facility sponsored by the U.S. National Science Foundation under Cooperative Agreement No. 1852977. 
