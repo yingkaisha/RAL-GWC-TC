@@ -1,0 +1,167 @@
+# --------------------------------------------------------------------------------------------------------------------- #
+
+save_loc: '/glade/work/ksha/DWC_runs/CorrDiff/'
+seed: 1000
+
+data:
+    dscale_input:
+
+        variables: ['WRF_Q_tot_05']
+        save_loc: '/glade/derecho/scratch/ksha/DWC_data/CONUS_domain_TC/TC_pred/pred_ERA5_*.zarr'
+
+        surface_variables: ['WRF_SP', 'WRF_T2', 'WRF_U10', 'WRF_V10', 'WRF_PWAT_05']
+        save_loc_surface: '/glade/derecho/scratch/ksha/DWC_data/CONUS_domain_TC/TC_pred/pred_ERA5_*.zarr'
+
+        all_varnames: ['WRF_Q_tot_05', 'WRF_SP', 'WRF_T2', 'WRF_U10', 'WRF_V10', 'WRF_PWAT_05']
+
+        mean_path: '/glade/derecho/scratch/ksha/DWC_data/CONUS_domain_TC/mean_std/C404_mean_CorrDiff_1980_2019_12lev.nc'
+        std_path: '/glade/derecho/scratch/ksha/DWC_data/CONUS_domain_TC/mean_std/C404_std_CorrDiff_1980_2019_12lev.nc'
+
+        levels: 1
+
+        history_len: 1
+        valid_history_len: 1
+
+        forecast_len: 0
+        valid_forecast_len: 0
+
+    levels: 1
+
+    variables: ['WRF_Q_tot_05']
+    save_loc: '/glade/derecho/scratch/ksha/DWC_data/CONUS_domain_TC/C404_CorrDiff/pred_ERA5_*'
+
+    surface_variables: ['WRF_SP', 'WRF_T2', 'WRF_U10', 'WRF_V10', 'WRF_PWAT_05', 'WRF_precip_025']
+    save_loc_surface: '/glade/derecho/scratch/ksha/DWC_data/CONUS_domain_TC/C404_CorrDiff/pred_ERA5_*'
+
+    static_variables: ['z_reg', 'LANDMASK']
+    save_loc_static: '/glade/derecho/scratch/ksha/DWC_data/CONUS_domain_TC/static/C404_TC_static_8km.zarr'
+
+    history_len: 1
+    valid_history_len: 1
+
+    forecast_len: 0
+    valid_forecast_len: 0
+
+    mean_path: '/glade/derecho/scratch/ksha/DWC_data/CONUS_domain_TC/mean_std/C404_mean_CorrDiff_1980_2019_12lev.nc'
+    std_path: '/glade/derecho/scratch/ksha/DWC_data/CONUS_domain_TC/mean_std/C404_std_CorrDiff_1980_2019_12lev.nc'
+
+    # train / validation split
+    train_years: [1980, 2025]
+    valid_years: [2019, 2020]
+    test_years: [2020, 2022]
+
+    # data workflow
+    scaler_type: 'std-dscale'
+
+    one_shot: False
+    lead_time_periods: 1
+    skip_periods: null
+    static_first: True
+
+
+trainer:
+    type: corrdiff
+
+    run_residual_diagnostic: False
+
+    mode: fsdp
+    cpu_offload: False
+    activation_checkpoint: True
+    
+    load_weights: True
+    load_optimizer: True
+    load_scaler: True
+    load_sheduler: True
+    num_epoch: 9
+    
+    skip_validation: False
+    update_learning_rate: False
+    
+    save_backup_weights: True
+    save_best_weights: True
+    save_metric_vars: True
+    
+    learning_rate: 1.0e-04
+    weight_decay: 1.0e-06
+    
+    train_batch_size: 1
+    valid_batch_size: 1
+    
+    batches_per_epoch: 2000
+    valid_batches_per_epoch: 200
+    stopping_patience: 999
+    
+    start_epoch: 0
+
+    reload_epoch: True
+    epochs: &epochs 90
+    
+    use_scheduler: True
+    scheduler: {'scheduler_type': 'cosine-annealing', 'T_max': *epochs,  'last_epoch': -1}
+    
+    amp: False
+    grad_accum_every: 1 
+    grad_max_norm: 32.0
+    thread_workers: 1
+    valid_thread_workers: 0
+    
+    diffusion:
+        sigma_data: 0.5
+        p_mean: -1.2
+        p_std:  1.2
+        channel_weights: [1.0, 2.0, 3.0, 1.0, 1.0, 1.5, 3.0]
+    
+    ema:
+        decay: 0.9999
+
+
+
+model:
+    type: corrdiff
+    levels: 1
+    image_height: 336
+    image_width: 336
+    input_channel: 7
+    condition_channel: 8
+    output_channel: 7
+    time_encode_dim: 4
+
+    base_ch: 128
+    ch_mults: [1, 2, 2, 4, 4] # 5 levels
+    num_res_blocks: 3
+    attn_levels: [3, 4]
+    num_heads: 8
+    dropout: 0.13
+    
+loss: 
+    # the main training loss
+    training_loss: "mse"
+   
+    use_power_loss: False 
+    use_spectral_loss: False
+
+    use_latitude_weights: False
+    latitude_weights: '/glade/derecho/scratch/ksha/DWC_data/CONUS_domain_FULL/static/C404_static_8km.zarr'
+
+    use_variable_weights: False
+
+
+predict:
+    mode: 'none'
+    use_ema: True
+    use_best_weights: False
+    
+    ensemble_size: 1
+    sampler_steps: 18
+    sigma_min: 0.002
+    sigma_max: 80.0
+    rho: 7.0
+    
+    save_forecast: '/glade/derecho/scratch/ksha/corrdiff_ERA5_TC/'
+    
+    forecasts:
+        year_range: [2020, 2022]
+        start_ind: 0
+        pred_step: 5000
+
+
