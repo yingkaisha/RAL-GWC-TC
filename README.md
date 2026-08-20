@@ -44,5 +44,5 @@ A repository based on [MILES-CREDIT](https://miles-credit.readthedocs.io/en/late
 
 This material is based upon work supported by the National Science Foundation (NSF) National Center for Atmospheric Research (NCAR), which is a major facility sponsored by the U.S. National Science Foundation under Cooperative Agreement No. 1852977. 
 Y. Sha and T. Mayo are also supported by the EdEC Faculty Innovator Program No. 1755088.
-The authors acknowledge high-performance computing support from Derecho and Casper \cite{Cheyenne} provided by the Computational and Information Systems Laboratory, NCAR, and sponsored by the NSF.
+The authors acknowledge high-performance computing support from Derecho and Casper provided by the Computational and Information Systems Laboratory, NCAR, and sponsored by the NSF.
 
